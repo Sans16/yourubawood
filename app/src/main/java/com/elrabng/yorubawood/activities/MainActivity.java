@@ -1,16 +1,18 @@
-package com.elrabng.yorubawood;
+package com.elrabng.yorubawood.activities;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
+
+import com.elrabng.yorubawood.R;
 
 public class MainActivity extends Activity {
     WebView web;
@@ -32,10 +34,24 @@ public class MainActivity extends Activity {
         int height = dm.heightPixels;
 
         getWindow().setLayout((int)(width *1 ),(int)(height*1 ));
-        Intent intent = getIntent();
-        website = intent.getStringExtra("url");
+//        Intent intent = getIntent();
+//        website = intent.getStringExtra("url");
         Log.i(TAG,"the url "+website);
         web = findViewById(R.id.wv);
+
+
+        web.getSettings().setJavaScriptEnabled(true);
+        web.getSettings().setLoadWithOverviewMode(true);
+        web.getSettings().setUseWideViewPort(true);
+        //webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+
+        web.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
+
+        web.getSettings().setDomStorageEnabled(true);
+        // webSettings.setDatabaseEnabled(true);
+        web.loadUrl("http://www.yorubawood.com/");
+        web.setWebViewClient(new WebViewClient());
+        web.setWebChromeClient(new WebChromeClient());
 
         web.setWebViewClient(new WebViewClient() {
 // This method will be triggered when the Page Started Loading
@@ -66,10 +82,8 @@ public class MainActivity extends Activity {
             }
         });
 
-        web.loadUrl(website);
-        web.getSettings().setLoadWithOverviewMode(true);
-        web.getSettings().setUseWideViewPort(true);
-        web.getSettings().setBuiltInZoomControls(true);
-        web.getSettings().setJavaScriptEnabled(true);//enable java script to be loaded
+
+
+
     }
 }
