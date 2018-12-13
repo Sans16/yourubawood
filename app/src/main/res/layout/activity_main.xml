@@ -13,9 +13,15 @@
         android:layout_height="0dp"
         android:layout_weight="0.1"
         app:titleTextColor="#fff"
-        app:navigationIcon="@mipmap/logo3"
         android:minHeight="?attr/actionBarSize"
         android:background="@color/colorPrimary">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:background="#c0c0c0c0"
+            android:scaleType="fitXY"
+            android:src="@drawable/logo2" />
 
     </android.support.v7.widget.Toolbar>
 
